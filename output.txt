@@ -1,0 +1,159 @@
+julia> p
+11×11 Matrix{Int64}:
+ 863041  870473  874189  879763  885337  898343  902059  907633  913207  920639  926213
+ 870473  877969  881717  887339  892961  906079  909827  915449  921071  928567  934189
+ 874189  881717  885481  891127  896773  909947  913711  919357  925003  932531  938177
+ 879763  887339  891127  896809  902491  915749  919537  925219  930901  938477  944159
+ 885337  892961  896773  902491  908209  921551  925363  931081  936799  944423  950141
+ 898343  906079  909947  915749  921551  935089  938957  944759  950561  958297  964099
+ 902059  909827  913711  919537  925363  938957  942841  948667  954493  962261  968087
+ 907633  915449  919357  925219  931081  944759  948667  954529  960391  968207  974069
+ 913207  921071  925003  930901  936799  950561  954493  960391  966289  974153  980051
+ 920639  928567  932531  938477  944423  958297  962261  968207  974153  982081  988027
+ 926213  934189  938177  944159  950141  964099  968087  974069  980051  988027  994009
+
+julia> function f(a)
+           x = big(2)
+           while !((x % big(a) == 1)&&(log2(x)%2==0))
+               x *= big(2)
+           end; f0 = BigInt(2)^(Int(log2(x))÷2)
+           print("2^$(Int(log2(x))) == (m⋅$a)-1 = $(2^(log2(x))==x), factors = $([gcd(f0+1,a),gcd(f0-1,a)])"); if 1 in [gcd(f0+1,a),gcd(f0-1,a)]; println("--- $(factor(a)) ---"); else; println();
+           end; end
+f (generic function with 1 method)
+
+julia> for semiprime in p
+       f(semiprime)
+       end
+2^431056 == (m⋅863041)-1 = true, factors = BigInt[863041, 1]--- Primes.Factorization(929 => 2) ---
+2^54288 == (m⋅870473)-1 = true, factors = BigInt[929, 937]
+2^109040 == (m⋅874189)-1 = true, factors = BigInt[929, 941]
+2^219472 == (m⋅879763)-1 = true, factors = BigInt[929, 947]
+2^7888 == (m⋅885337)-1 = true, factors = BigInt[929, 953]
+2^224112 == (m⋅898343)-1 = true, factors = BigInt[929, 967]
+2^45008 == (m⋅902059)-1 = true, factors = BigInt[929, 971]
+2^28304 == (m⋅907633)-1 = true, factors = BigInt[929, 977]
+2^227824 == (m⋅913207)-1 = true, factors = BigInt[929, 983]
+2^229680 == (m⋅920639)-1 = true, factors = BigInt[929, 991]
+2^38512 == (m⋅926213)-1 = true, factors = BigInt[929, 997]
+2^54288 == (m⋅870473)-1 = true, factors = BigInt[929, 937]
+2^109629 == (m⋅877969)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 2) ---
+2^109980 == (m⋅881717)-1 = true, factors = BigInt[941, 937]
+2^110682 == (m⋅887339)-1 = true, factors = BigInt[947, 937]
+2^7956 == (m⋅892961)-1 = true, factors = BigInt[953, 937]
+2^18837 == (m⋅906079)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 967 => 1) ---
+2^22698 == (m⋅909827)-1 = true, factors = BigInt[971, 937]
+2^57096 == (m⋅915449)-1 = true, factors = BigInt[977, 937]
+2^57447 == (m⋅921071)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 983 => 1) ---
+2^6435 == (m⋅928567)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 991 => 1) ---
+2^38844 == (m⋅934189)-1 = true, factors = BigInt[997, 937]
+2^109040 == (m⋅874189)-1 = true, factors = BigInt[929, 941]
+2^109980 == (m⋅881717)-1 = true, factors = BigInt[941, 937]
+2^884540 == (m⋅885481)-1 = true, factors = BigInt[885481, 1]--- Primes.Factorization(941 => 2) ---
+2^444620 == (m⋅891127)-1 = true, factors = BigInt[941, 947]
+2^15980 == (m⋅896773)-1 = true, factors = BigInt[896773, 1]--- Primes.Factorization(941 => 1, 953 => 1) ---
+2^454020 == (m⋅909947)-1 = true, factors = BigInt[941, 967]
+2^91180 == (m⋅913711)-1 = true, factors = BigInt[941, 971]
+2^114680 == (m⋅919357)-1 = true, factors = BigInt[977, 941]
+2^461540 == (m⋅925003)-1 = true, factors = BigInt[941, 983]
+2^93060 == (m⋅932531)-1 = true, factors = BigInt[941, 991]
+2^78020 == (m⋅938177)-1 = true, factors = BigInt[938177, 1]--- Primes.Factorization(941 => 1, 997 => 1) ---
+2^219472 == (m⋅879763)-1 = true, factors = BigInt[929, 947]
+2^110682 == (m⋅887339)-1 = true, factors = BigInt[947, 937]
+2^444620 == (m⋅891127)-1 = true, factors = BigInt[941, 947]
+2^895862 == (m⋅896809)-1 = true, factors = BigInt[896809, 1]--- Primes.Factorization(947 => 2) ---
+2^32164 == (m⋅902491)-1 = true, factors = BigInt[953, 947]
+2^456918 == (m⋅915749)-1 = true, factors = BigInt[947, 967]
+2^91762 == (m⋅919537)-1 = true, factors = BigInt[919537, 1]--- Primes.Factorization(947 => 1, 971 => 1) ---
+2^230824 == (m⋅925219)-1 = true, factors = BigInt[977, 947]
+2^464486 == (m⋅930901)-1 = true, factors = BigInt[947, 983]
+2^42570 == (m⋅938477)-1 = true, factors = BigInt[947, 991]
+2^157036 == (m⋅944159)-1 = true, factors = BigInt[997, 947]
+2^7888 == (m⋅885337)-1 = true, factors = BigInt[929, 953]
+2^7956 == (m⋅892961)-1 = true, factors = BigInt[953, 937]
+2^15980 == (m⋅896773)-1 = true, factors = BigInt[896773, 1]--- Primes.Factorization(941 => 1, 953 => 1) ---
+2^32164 == (m⋅902491)-1 = true, factors = BigInt[953, 947]
+2^64804 == (m⋅908209)-1 = true, factors = BigInt[908209, 1]--- Primes.Factorization(953 => 2) ---
+2^32844 == (m⋅921551)-1 = true, factors = BigInt[953, 967]
+2^6596 == (m⋅925363)-1 = true, factors = BigInt[953, 971]
+2^8296 == (m⋅931081)-1 = true, factors = BigInt[977, 953]
+2^33388 == (m⋅936799)-1 = true, factors = BigInt[953, 983]
+2^33660 == (m⋅944423)-1 = true, factors = BigInt[953, 991]
+2^5644 == (m⋅950141)-1 = true, factors = BigInt[950141, 1]--- Primes.Factorization(953 => 1, 997 => 1) ---
+2^224112 == (m⋅898343)-1 = true, factors = BigInt[929, 967]
+2^18837 == (m⋅906079)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 967 => 1) ---
+2^454020 == (m⋅909947)-1 = true, factors = BigInt[941, 967]
+2^456918 == (m⋅915749)-1 = true, factors = BigInt[947, 967]
+2^32844 == (m⋅921551)-1 = true, factors = BigInt[953, 967]
+2^467061 == (m⋅935089)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(967 => 2) ---
+2^93702 == (m⋅938957)-1 = true, factors = BigInt[971, 967]
+2^235704 == (m⋅944759)-1 = true, factors = BigInt[977, 967]
+2^237153 == (m⋅950561)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(967 => 1, 983 => 1) ---
+2^79695 == (m⋅958297)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(967 => 1, 991 => 1) ---
+2^160356 == (m⋅964099)-1 = true, factors = BigInt[997, 967]
+2^45008 == (m⋅902059)-1 = true, factors = BigInt[929, 971]
+2^22698 == (m⋅909827)-1 = true, factors = BigInt[971, 937]
+2^91180 == (m⋅913711)-1 = true, factors = BigInt[941, 971]
+2^91762 == (m⋅919537)-1 = true, factors = BigInt[919537, 1]--- Primes.Factorization(947 => 1, 971 => 1) ---
+2^6596 == (m⋅925363)-1 = true, factors = BigInt[953, 971]
+2^93702 == (m⋅938957)-1 = true, factors = BigInt[971, 967]
+2^188374 == (m⋅942841)-1 = true, factors = BigInt[942841, 1]--- Primes.Factorization(971 => 2) ---
+2^47336 == (m⋅948667)-1 = true, factors = BigInt[977, 971]
+2^95254 == (m⋅954493)-1 = true, factors = BigInt[971, 983]
+2^96030 == (m⋅962261)-1 = true, factors = BigInt[971, 991]
+2^32204 == (m⋅968087)-1 = true, factors = BigInt[997, 971]
+2^28304 == (m⋅907633)-1 = true, factors = BigInt[929, 977]
+2^57096 == (m⋅915449)-1 = true, factors = BigInt[977, 937]
+2^114680 == (m⋅919357)-1 = true, factors = BigInt[977, 941]
+2^230824 == (m⋅925219)-1 = true, factors = BigInt[977, 947]
+2^8296 == (m⋅931081)-1 = true, factors = BigInt[977, 953]
+2^235704 == (m⋅944759)-1 = true, factors = BigInt[977, 967]
+2^47336 == (m⋅948667)-1 = true, factors = BigInt[977, 971]
+2^476776 == (m⋅954529)-1 = true, factors = BigInt[954529, 1]--- Primes.Factorization(977 => 2) ---
+2^239608 == (m⋅960391)-1 = true, factors = BigInt[977, 983]
+2^241560 == (m⋅968207)-1 = true, factors = BigInt[977, 991]
+2^40504 == (m⋅974069)-1 = true, factors = BigInt[977, 997]
+2^227824 == (m⋅913207)-1 = true, factors = BigInt[929, 983]
+2^57447 == (m⋅921071)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 983 => 1) ---
+2^461540 == (m⋅925003)-1 = true, factors = BigInt[941, 983]
+2^464486 == (m⋅930901)-1 = true, factors = BigInt[947, 983]
+2^33388 == (m⋅936799)-1 = true, factors = BigInt[953, 983]
+2^237153 == (m⋅950561)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(967 => 1, 983 => 1) ---
+2^95254 == (m⋅954493)-1 = true, factors = BigInt[971, 983]
+2^239608 == (m⋅960391)-1 = true, factors = BigInt[977, 983]
+2^482653 == (m⋅966289)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(983 => 2) ---
+2^243045 == (m⋅974153)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(983 => 1, 991 => 1) ---
+2^163012 == (m⋅980051)-1 = true, factors = BigInt[997, 983]
+2^229680 == (m⋅920639)-1 = true, factors = BigInt[929, 991]
+2^6435 == (m⋅928567)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(937 => 1, 991 => 1) ---
+2^93060 == (m⋅932531)-1 = true, factors = BigInt[941, 991]
+2^42570 == (m⋅938477)-1 = true, factors = BigInt[947, 991]
+2^33660 == (m⋅944423)-1 = true, factors = BigInt[953, 991]
+2^79695 == (m⋅958297)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(967 => 1, 991 => 1) ---
+2^96030 == (m⋅962261)-1 = true, factors = BigInt[971, 991]
+2^241560 == (m⋅968207)-1 = true, factors = BigInt[977, 991]
+2^243045 == (m⋅974153)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(983 => 1, 991 => 1) ---
+2^490545 == (m⋅982081)-1 = true, factors = BigInt[1, 1]--- Primes.Factorization(991 => 2) ---
+2^164340 == (m⋅988027)-1 = true, factors = BigInt[997, 991]
+2^38512 == (m⋅926213)-1 = true, factors = BigInt[929, 997]
+2^38844 == (m⋅934189)-1 = true, factors = BigInt[997, 937]
+2^78020 == (m⋅938177)-1 = true, factors = BigInt[938177, 1]--- Primes.Factorization(941 => 1, 997 => 1) ---
+2^157036 == (m⋅944159)-1 = true, factors = BigInt[997, 947]
+2^5644 == (m⋅950141)-1 = true, factors = BigInt[950141, 1]--- Primes.Factorization(953 => 1, 997 => 1) ---
+2^160356 == (m⋅964099)-1 = true, factors = BigInt[997, 967]
+2^32204 == (m⋅968087)-1 = true, factors = BigInt[997, 971]
+2^40504 == (m⋅974069)-1 = true, factors = BigInt[977, 997]
+2^163012 == (m⋅980051)-1 = true, factors = BigInt[997, 983]
+2^164340 == (m⋅988027)-1 = true, factors = BigInt[997, 991]
+2^331004 == (m⋅994009)-1 = true, factors = BigInt[994009, 1]--- Primes.Factorization(997 => 2) ---
+
+
+... string = "..."...
+
+julia> count("2^", string)
+121
+
+julia> count("Primes.", string)
+31
+
+julia> 31/121*100
+25.6198347107438
