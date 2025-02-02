@@ -3,6 +3,7 @@
 ## Quantum Shor's Algorithm Implementation
 ### Overview
 This project demonstrates the implementation of Shor's Algorithm using Quantum Rings' simulator. Shor's Algorithm is a quantum algorithm for integer factorization, which is exponentially faster than the best-known classical algorithms.
+**NOTE: My Main file is `Shor.ipynb`**
 
 ## Documentation
 ### Algorithm Explanation
