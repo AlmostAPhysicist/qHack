@@ -1,0 +1,7 @@
+ function f(a)
+           x = big(2)
+           while !((x % big(a) == 1))
+               x *= big(2)
+           end; f0 = BigInt(2)^(Int(log2(x))÷2)
+           print("2^$(Int(log2(x))) == (m⋅$a)-1 = $(2^(log2(x))==x), factors = $([gcd(f0+1,a),gcd(f0-1,a)])"); if 1 in [gcd(f0+1,a),gcd(f0-1,a)]; println("--- $(factor(a)) ---"); else; println();
+           end; end
